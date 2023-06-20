@@ -23,6 +23,9 @@ datagen = ImageDataGenerator(
     rescale=1.0/255.0,
     shear_range=0.2,
     zoom_range=0.2,
+    rotation_range=10,  # Aggiungi rotazione delle immagini
+    width_shift_range=0.1,  # Aggiungi spostamento orizzontale delle immagini
+    height_shift_range=0.1,  # Aggiungi spostamento verticale delle immagini
     horizontal_flip=True,
     validation_split=0.2
 )
@@ -31,7 +34,7 @@ datagen = ImageDataGenerator(
 train_directory = 'dataset/training'
 test_directory = 'dataset/test'
 batch_size = 32
-image_size = (64, 64)
+image_size = (224, 224)
 
 # Training data generator creation
 train_generator = datagen.flow_from_directory(
