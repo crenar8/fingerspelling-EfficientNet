@@ -2,6 +2,7 @@ import cv2
 from tensorflow import keras
 import numpy as np
 from collections import OrderedDict
+from efficientnet.tfkeras import EfficientNetB0
 
 # Load saved Model
 model = keras.models.load_model('asl_fingerspelling_model.h5')
@@ -43,16 +44,15 @@ while True:
     # Show the final output
     cv2.imshow('Webcam', frame)
 
-    # Ascolta l'input da tastiera
+    # Input listening
     key = cv2.waitKey(1)
 
-    # Se il tasto "S" viene premuto, scatta una foto
+    # If "S" is pressed, then take the pic as frame
     if key == ord('s'):
-        # Esegui le opportune operazioni di pre-elaborazione sull'immagine (ad esempio, ridimensionamento e normalizzazione)
-        frame = cv2.resize(frame, (64, 64))
+        # Image pre-elaboration in order to adapt it for my model
+        frame = cv2.resize(frame, (224, 224))
         frame = frame.astype(np.float32) / 255.0
 
-        # Aggiungi una dimensione iniziale all'immagine per adeguarla all'input del modello
         input_image = np.expand_dims(frame, axis=0)
 
         prediction = model.predict(input_image)
@@ -60,7 +60,7 @@ while True:
 
         predicted_letter = class_mapping[result]
 
-        print("Classe predetta:", predicted_letter)
+        print("Predicted Class:", predicted_letter)
 
     if cv2.waitKey(1) == ord('q'):
         break

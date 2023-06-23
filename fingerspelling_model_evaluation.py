@@ -1,15 +1,16 @@
 from keras.preprocessing.image import ImageDataGenerator
+from efficientnet.tfkeras import EfficientNetB0
 from tensorflow import keras
 
-# Carica il modello pre-addestrato
+# Loading of the pre-trained model
 model = keras.models.load_model('asl_fingerspelling_model.h5')
 
-# Valuta il modello sui dati di test
+
 test_directory = 'dataset/test'
 batch_size = 32
-image_size = (64, 64)
+image_size = (224, 224)
 
-# Creazione del generatore di dati di test
+# Test data generator
 test_datagen = ImageDataGenerator(rescale=1.0/255.0)
 test_generator = test_datagen.flow_from_directory(
     test_directory,
@@ -19,9 +20,9 @@ test_generator = test_datagen.flow_from_directory(
     shuffle=False
 )
 
-# Valutazione del modello sui dati di test
+# Evaluation of the trained model
 loss, accuracy = model.evaluate(test_generator)
 
-# Stampa delle metriche di valutazione
+# Metrics printing
 print('Loss:', loss)
 print('Accuracy:', accuracy)

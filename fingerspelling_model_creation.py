@@ -3,16 +3,16 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from efficientnet.tfkeras import EfficientNetB0
 
 
-# Carica EfficientNet pre-addestrato sui pesi di ImageNet
+# Loading base EfficientNet pre-trained with ImageNet weights
 base_model = EfficientNetB0(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
 
-# Aggiungi un livello di Global Average Pooling per ridurre la dimensione dell'output
+# Adding Global Average Pooling  Layer to reduce output size
 x = keras.layers.GlobalAveragePooling2D()(base_model.output)
 
-# Aggiungi un livello completamente connesso come output
+# Adding last Layer fully connected as an output
 output = keras.layers.Dense(24, activation='softmax')(x)
 
-# Crea il modello finale
+# Creation of the final Model
 model = keras.models.Model(inputs=base_model.input, outputs=output)
 
 # Model compiling
@@ -23,9 +23,9 @@ datagen = ImageDataGenerator(
     rescale=1.0/255.0,
     shear_range=0.2,
     zoom_range=0.2,
-    rotation_range=10,  # Aggiungi rotazione delle immagini
-    width_shift_range=0.1,  # Aggiungi spostamento orizzontale delle immagini
-    height_shift_range=0.1,  # Aggiungi spostamento verticale delle immagini
+    rotation_range=10,  # Image rotation
+    width_shift_range=0.1,  # Horizontal shift of the images
+    height_shift_range=0.1,  # Vertical shift of the images
     horizontal_flip=True,
     validation_split=0.2
 )
