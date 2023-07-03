@@ -1,5 +1,6 @@
 from keras.preprocessing.image import ImageDataGenerator
 from efficientnet.tfkeras import EfficientNetB0
+from sklearn.metrics import classification_report
 from tensorflow import keras
 
 # Loading of the pre-trained model
@@ -21,8 +22,13 @@ test_generator = test_datagen.flow_from_directory(
 )
 
 # Evaluation of the trained model
-loss, accuracy = model.evaluate(test_generator)
+predictions = model.predict(test_generator)
+y_pred = predictions.argmax(axis=1)
+y_true = test_generator.classes
 
-# Metrics printing
-print('Loss:', loss)
-print('Accuracy:', accuracy)
+# Generate classification report
+report = classification_report(y_true, y_pred)
+
+# Print the report to a file
+with open('model_evaluation_report.txt', 'w') as f:
+    print(report, file=f)
