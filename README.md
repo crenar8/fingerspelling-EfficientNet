@@ -52,7 +52,7 @@ python fingerspelling.py
 
 ## Customization
 
-If you want to customize or train your own model, you can modify the code in the `train.py` file. Adjust the model architecture, hyperparameters, and training configurations according to your requirements.
+If you want to customize or train your own model, you can modify the code in the `fingerspelling_model_creation.py` file. Adjust the model architecture, hyperparameters, and training configurations according to your requirements.
 
 ## Contributing
 
@@ -69,7 +69,7 @@ This project is licensed under GNU License. See the [LICENSE](LICENSE) file for 
 
 ## Contact
 
-For any questions or inquiries, please contact [k.dervishi@students.uninettunouniversity.net](mailto:your-email@example.com)
+For any questions or inquiries, please contact [k.dervishi@students.uninettunouniversity.net](mailto:k.dervishi@students.uninettunouniversity.net)
 
 
 
