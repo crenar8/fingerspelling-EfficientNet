@@ -4,13 +4,13 @@ from efficientnet.tfkeras import EfficientNetB0
 
 
 # Loading base EfficientNet pre-trained with ImageNet weights
-base_model = EfficientNetB0(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+base_model = EfficientNetB0(weights='imagenet', include_top=False, input_shape=(200, 200, 3))
 
 # Adding Global Average Pooling  Layer to reduce output size
 x = keras.layers.GlobalAveragePooling2D()(base_model.output)
 
 # Adding last Layer fully connected as an output
-output = keras.layers.Dense(24, activation='softmax')(x)
+output = keras.layers.Dense(29, activation='softmax')(x)
 
 # Creation of the final Model
 model = keras.models.Model(inputs=base_model.input, outputs=output)
@@ -34,7 +34,7 @@ datagen = ImageDataGenerator(
 train_directory = 'dataset/training'
 test_directory = 'dataset/test'
 batch_size = 32
-image_size = (224, 224)
+image_size = (200, 200)
 
 # Training data generator creation
 train_generator = datagen.flow_from_directory(
