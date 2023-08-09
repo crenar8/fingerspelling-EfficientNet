@@ -50,7 +50,7 @@ while True:
     # If "S" is pressed, then take the pic as frame
     if key == ord('s'):
         # Image pre-elaboration in order to adapt it for my model
-        frame = cv2.resize(frame, (224, 224))
+        frame = cv2.resize(frame, (200, 200))
         frame = frame.astype(np.float32) / 255.0
 
         input_image = np.expand_dims(frame, axis=0)
