@@ -9,7 +9,7 @@ model = keras.models.load_model('asl_fingerspelling_model.h5')
 
 test_directory = 'dataset/test'
 batch_size = 32
-image_size = (224, 224)
+image_size = (200, 200)
 
 # Test data generator
 test_datagen = ImageDataGenerator(rescale=1.0/255.0)
