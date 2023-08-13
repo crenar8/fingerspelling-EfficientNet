@@ -9,30 +9,35 @@ model = keras.models.load_model('asl_fingerspelling_model.h5')
 
 # Dictionary
 class_mapping = OrderedDict([
-    (0, 'a'),
-    (1, 'b'),
-    (2, 'c'),
-    (3, 'd'),
-    (4, 'e'),
-    (5, 'f'),
-    (6, 'g'),
-    (7, 'h'),
-    (8, 'i'),
-    (9, 'k'),
-    (10, 'l'),
-    (11, 'm'),
-    (12, 'n'),
-    (13, 'o'),
-    (14, 'p'),
-    (15, 'q'),
-    (16, 'r'),
-    (17, 's'),
-    (18, 't'),
-    (19, 'u'),
-    (20, 'v'),
-    (21, 'w'),
-    (22, 'x'),
-    (23, 'y') ])
+    (0, 'A'),
+    (1, 'B'),
+    (2, 'C'),
+    (3, 'D'),
+    (4, 'del'),
+    (5, 'E'),
+    (6, 'F'),
+    (7, 'G'),
+    (8, 'H'),
+    (9, 'I'),
+    (10, 'J'),
+    (11, 'K'),
+    (12, 'L'),
+    (13, 'M'),
+    (14, 'N'),
+    (15, 'nothing'),
+    (16, 'O'),
+    (17, 'P'),
+    (18, 'Q'),
+    (19, 'R'),
+    (20, 'S'),
+    (21, 'space'),
+    (22, 'T'),
+    (23, 'U'),
+    (24, 'V'),
+    (25, 'W'),
+    (26, 'X'),
+    (27, 'Y'),
+    (28, 'Z') ])
 
 # Initialize the webcam
 cap = cv2.VideoCapture(0)
@@ -50,7 +55,7 @@ while True:
     # If "S" is pressed, then take the pic as frame
     if key == ord('s'):
         # Image pre-elaboration in order to adapt it for my model
-        frame = cv2.resize(frame, (224, 224))
+        frame = cv2.resize(frame, (200, 200))
         frame = frame.astype(np.float32) / 255.0
 
         input_image = np.expand_dims(frame, axis=0)
