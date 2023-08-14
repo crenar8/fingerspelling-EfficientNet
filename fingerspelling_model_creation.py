@@ -65,4 +65,3 @@ model.fit(
 
 # Trained Model saving
 model.save('asl_fingerspelling_model.h5')
-
