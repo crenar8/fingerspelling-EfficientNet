@@ -42,12 +42,28 @@ class_mapping = OrderedDict([
 # Initialize the webcam
 cap = cv2.VideoCapture(0)
 
+# Initialization of the sentence variable
+sentence = ""
+
 while True:
     # Read each frame from the webcam
     _, frame = cap.read()
 
-    # Show the final output
-    cv2.imshow('Webcam', frame)
+    # Display the sentence on the video frame
+    font_scale = 1  # Adjust this based on your video size
+    thickness = 2  # Adjust this based on your preference
+    color = (0, 0, 255)  # Color RED
+
+    # Calculation of text length
+    (text_width, text_height), _ = cv2.getTextSize(sentence, cv2.FONT_HERSHEY_SIMPLEX, font_scale, thickness)
+    x = (frame.shape[1] - text_width) // 2
+
+    # Position the text at the bottom
+    y = int(frame.shape[0] - 50)  # Adjust the Y position as needed
+
+    cv2.putText(frame, sentence, (x, y), cv2.FONT_HERSHEY_SIMPLEX, font_scale, color, thickness)
+
+    cv2.imshow('Hand Tracking', frame)
 
     # Input listening
     key = cv2.waitKey(1)
@@ -65,12 +81,14 @@ while True:
 
         predicted_letter = class_mapping[result]
 
-        print("Predicted Class:", predicted_letter)
+        # Concatenate the predicted letter to the sentence
+        sentence += predicted_letter
 
-    if cv2.waitKey(1) == ord('q'):
+    if key == ord('q'):
         break
+    elif key & 0xFF == 13:
+        sentence = ''
 
 # release the webcam and destroy all active windows
 cap.release()
-
 cv2.destroyAllWindows()
