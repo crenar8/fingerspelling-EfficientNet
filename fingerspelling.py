@@ -36,7 +36,7 @@ class_mapping = OrderedDict([
     (24, 'Y'),
     (25, 'Z'),
     (26, 'del'),
-    (27, 'nothing'),
+    (27, ''),
     (28, ' '), ])
 
 # Initialize the webcam
@@ -81,8 +81,11 @@ while True:
 
         predicted_letter = class_mapping[result]
 
-        # Concatenate the predicted letter to the sentence
-        sentence += predicted_letter
+        if predicted_letter == 'del':
+            sentence = sentence[:-1]
+        else:
+            # Concatenate the predicted letter to the sentence
+            sentence += predicted_letter
 
     if key == ord('q'):
         break
