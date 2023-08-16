@@ -37,7 +37,7 @@ class_mapping = OrderedDict([
     (25, 'Z'),
     (26, 'del'),
     (27, 'nothing'),
-    (28, 'space'), ])
+    (28, ' '), ])
 
 # Initialize the webcam
 cap = cv2.VideoCapture(0)
