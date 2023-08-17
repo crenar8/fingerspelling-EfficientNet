@@ -50,6 +50,8 @@ python fingerspelling.py
 
 4. The program will use the EfficientNetB0 model to classify the captured image and display the predicted ASL alphabet sign on the screen.
 
+![Instructions.png](..%2FInstructions.png)
+
 ## Customization
 
 If you want to customize or train your own model, you can modify the code in the `fingerspelling_model_creation.py` file. Adjust the model architecture, hyperparameters, and training configurations according to your requirements.
